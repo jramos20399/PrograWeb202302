@@ -31,7 +31,15 @@ namespace DAL.Implementations
 
         public Category Get(int id)
         {
-            throw new NotImplementedException();
+            Category category = null;
+            using (unidad = new UnidadDeTrabajo<Category>(new NorthWindContext()))
+            {
+                category = unidad.genericDAL.Get(id);
+
+
+            }
+
+            return category;
         }
 
         public IEnumerable<Category> GetAll()
