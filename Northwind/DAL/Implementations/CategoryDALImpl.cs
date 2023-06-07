@@ -73,7 +73,22 @@ namespace DAL.Implementations
 
         public bool Remove(Category entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (unidad = new UnidadDeTrabajo<Category>(new NorthWindContext()))
+                {
+                    unidad.genericDAL.Remove(entity);
+                    unidad.Complete();
+                }
+
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
 
         public void RemoveRange(IEnumerable<Category> entities)
