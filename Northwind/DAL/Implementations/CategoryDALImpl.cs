@@ -73,7 +73,21 @@ namespace DAL.Implementations
 
         public bool Update(Category entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (unidad = new UnidadDeTrabajo<Category>(new NorthWindContext()))
+                {
+                    unidad.genericDAL.Update(entity);
+                }
+
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }
