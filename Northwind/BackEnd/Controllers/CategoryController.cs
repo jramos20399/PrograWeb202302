@@ -84,8 +84,11 @@ namespace BackEnd.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public JsonResult Post([FromBody] CategoryModel category)
         {
+
+            categoryDAL.Add(Convertir(category));
+            return new JsonResult(category);
         }
 
         #endregion
