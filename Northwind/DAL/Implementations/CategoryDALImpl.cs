@@ -1,5 +1,6 @@
 ﻿using DAL.Interfaces;
 using Entities.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,28 @@ namespace DAL.Implementations
         {
             try
             {
-                using (unidad = new UnidadDeTrabajo<Category>(new NorthWindContext()))
-                {
-                    unidad.genericDAL.Add(entity);
-                    unidad.Complete();
-                }
+                string sql = "exec [dbo].[sp_AddCategory] @CategoryName, @Description";
+                var param = new SqlParameter[]
+                {   
+                    new SqlParameter()
+                    {
+                        ParameterName = "@CategoryName",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value= entity.CategoryName
+                    },
+                     new SqlParameter()
+                    {
+                        ParameterName = "@Description",
+                        SqlDbType= System.Data.SqlDbType.VarChar,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value= entity.Description
+                    }
+
+                };
+                NorthWindContext northWindContext = new NorthWindContext();
+
+                int resultado = northWindContext.Database.ExecuteSqlRaw(sql, param);
 
 
                 return true;
