@@ -44,12 +44,12 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public Category Get(int id)
+        public async Task<Category> Get(int id)
         {
             Category category = null;
             using (unidad = new UnidadDeTrabajo<Category>(new NorthWindContext()))
             {
-                category = unidad.genericDAL.Get(id);
+                category = await unidad.genericDAL.Get(id);
 
 
             }
@@ -57,12 +57,12 @@ namespace DAL.Implementations
             return category;
         }
 
-        public IEnumerable<Category> GetAll()
+        public async Task<IEnumerable<Category>> GetAll()
         {
             IEnumerable<Category> categories = null;
             using (unidad = new UnidadDeTrabajo<Category>(new NorthWindContext()))
             {
-                categories = unidad.genericDAL.GetAll();
+                categories = await unidad.genericDAL.GetAll();
 
 
             }
