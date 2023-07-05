@@ -64,5 +64,40 @@ namespace FrontEnd.Helpers
 
             return ProductViewModel;
         }
+
+
+        public ProductViewModel Update (ProductViewModel product)
+        {
+
+
+            ProductViewModel ProductViewModel;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.PutResponse("api/product/", product);
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            ProductViewModel = JsonConvert.DeserializeObject<ProductViewModel>(content);
+
+
+
+            return ProductViewModel;
+        }
+
+
+
+        public ProductViewModel Delete(int id)
+        {
+
+
+            ProductViewModel Product;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.DeleteResponse("api/product/" + id.ToString());
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Product = JsonConvert.DeserializeObject<ProductViewModel>(content);
+
+
+
+            return Product;
+        }
     }
 }

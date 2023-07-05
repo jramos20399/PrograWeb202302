@@ -30,7 +30,10 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            ProductViewModel product = productHelper.Get(id);
+
+            return View(product);
         }
 
         // GET: ProductController/Create
@@ -63,16 +66,22 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ProductViewModel product = productHelper.Get(id);
+            product.Suppliers = supplierHelper.GetAll();
+            product.Categories = categoryHelper.GetAll();
+
+            return View(product);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ProductViewModel product)
         {
             try
             {
+
+                productHelper.Update(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -84,16 +93,19 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ProductViewModel product = productHelper.Get(id);
+
+            return View(product);
         }
 
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(ProductViewModel product)
         {
             try
             {
+                productHelper.Delete(product.ProductId);
                 return RedirectToAction(nameof(Index));
             }
             catch
