@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    internal class ProductDALImpl : IProductDAL
+    public class ProductDALImpl : IProductDAL
     {
 
         private NorthWindContext _northWindContext;
