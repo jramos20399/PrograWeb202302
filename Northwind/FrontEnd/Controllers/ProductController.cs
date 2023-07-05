@@ -46,10 +46,12 @@ namespace FrontEnd.Controllers
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ProductViewModel product)
         {
             try
             {
+                productHelper.Create(product);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
