@@ -36,7 +36,11 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            return View();
+            ProductViewModel product = new ProductViewModel();
+            product.Suppliers = supplierHelper.GetAll();
+            product.Categories = categoryHelper.GetAll();
+
+            return View(product);
         }
 
         // POST: ProductController/Create

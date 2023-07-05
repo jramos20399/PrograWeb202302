@@ -24,12 +24,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="SupplierId" class="control-label"></label>
-                <input asp-for="SupplierId" class="form-control" />
+              
+                @Html.DropDownListFor(model=>model.SupplierId, new SelectList(Model.Suppliers,"SupplierId","CompanyName"),"--Select Supplier--")
+
                 <span asp-validation-for="SupplierId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <input asp-for="CategoryId" class="form-control" />
+                @Html.DropDownListFor(model=>model.CategoryId, new SelectList(Model.Categories,"CategoryId","CategoryName"),"--Select Category--")
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
