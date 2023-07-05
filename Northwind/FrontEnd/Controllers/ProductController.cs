@@ -1,14 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FrontEnd.Helpers;
+using FrontEnd.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
     public class ProductController : Controller
     {
+
+        private ProductHelper productHelper;
+        private CategoryHelper categoryHelper;
+        private SupplierHelper supplierHelper;
+
+        public ProductController()
+        {
+            productHelper = new ProductHelper();
+            categoryHelper = new CategoryHelper();
+            supplierHelper = new SupplierHelper();
+        }
+
+
         // GET: ProductController
         public ActionResult Index()
         {
-            return View();
+            List<ProductViewModel> products = productHelper.GetAll();
+            return View(products);
         }
 
         // GET: ProductController/Details/5
