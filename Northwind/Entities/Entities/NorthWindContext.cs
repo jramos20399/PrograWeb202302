@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities.Authentication;
 using Entities.Utilities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Entities.Entities
 {
-    public partial class NorthWindContext : DbContext
+    public partial class NorthWindContext : IdentityDbContext<ApplicationUser>
     {
         public NorthWindContext()
         {
