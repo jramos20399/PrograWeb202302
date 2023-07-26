@@ -94,6 +94,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<ApiKeyMiddleware>();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
