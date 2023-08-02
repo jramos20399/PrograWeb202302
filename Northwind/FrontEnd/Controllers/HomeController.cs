@@ -5,7 +5,9 @@ using System.Diagnostics;
 
 namespace FrontEnd.Controllers
 {
-   
+
+
+    [Authorize] 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
