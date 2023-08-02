@@ -100,6 +100,7 @@ namespace BackEnd.Controllers
 
         #region Modificar
 
+        [Authorize("SuperAdmin")]
 
         // PUT api/<CategoryController>/5
         [HttpPut]
